@@ -4,7 +4,7 @@
       src="https://cdn.vuetifyjs.com/images/cards/plane.jpg"
       class="white--text align-end"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      height="20  0px"
+      height="200px"
     >
     </v-img>
 
