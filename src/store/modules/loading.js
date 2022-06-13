@@ -23,7 +23,7 @@ const getters = {
 
 export default {
   namespaced: false,
-  defaultState,
+  state: defaultState,
   mutations,
   actions,
   getters,

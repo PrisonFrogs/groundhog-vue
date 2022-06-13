@@ -43,7 +43,7 @@ const actions = {
 
     const accessToken = response.access_token;
     const expAt = response.exp_at;
-    const user = jwtDecode(accessToken);
+    const user = await jwtDecode(accessToken);
 
     commit('SET_AUTH_TOKEN', accessToken);
     commit('SET_EXP_AT', expAt);
@@ -72,7 +72,7 @@ const getters = {
 
 export default {
   namespaced: false,
-  defaultState,
+  state: defaultState,
   mutations,
   actions,
   getters,

@@ -22,7 +22,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import fakeLoading from '@/utils/fakeLoading';
+import { fakeLoadingAync } from '@/utils/fakeLoading';
 
 export default {
   name: 'LoginIndex',
@@ -34,26 +34,24 @@ export default {
       },
     };
   },
-  created() {
-    // if (this.loginState) {
-    fakeLoading(3000, () => {
+  async created() {
+    if (this.loginState) {
+      await fakeLoadingAync(3000);
       this.$router.push('/');
-    });
+    }
   },
   computed: {
     ...mapGetters(['loginState', 'currentUser', 'loginState']),
   },
   methods: {
-    ...mapActions(['login', 'showSucessToast']),
+    ...mapActions(['login', 'showSucessToast', 'setLoading']),
     async submit() {
+      // global loading
       await this.login(this.formData);
-
       this.showSucessToast(`Welcome ${this.currentUser.nickname}!`);
 
-      // global loading
-      fakeLoading(1, () => {
-        this.$router.push('/');
-      });
+      await fakeLoadingAync(3000);
+      this.$router.push('/');
     },
   },
 };

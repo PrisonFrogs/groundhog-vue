@@ -1,5 +1,5 @@
 <template>
-  <div class="cat-container">
+  <div ref="cat-container" class="cat-container">
     <div class="cat">
       <div class="cat__segment"></div>
       <div class="cat__segment"></div>

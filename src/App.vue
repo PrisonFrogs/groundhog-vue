@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <v-app>
-      <template v-if="isLoading">
-        <LoadingScreen />
-      </template>
-      <router-view v-else />
+      <LoadingScreen v-if="isLoading" />
+      <router-view />
     </v-app>
   </div>
 </template>
