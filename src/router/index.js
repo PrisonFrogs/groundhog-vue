@@ -10,6 +10,11 @@ const routes = [
     name: 'home',
     component: HomeView,
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/pages/login/index.vue'),
+  },
 ];
 
 const router = new VueRouter({

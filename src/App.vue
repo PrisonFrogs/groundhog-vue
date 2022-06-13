@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <v-app>
-      <router-view />
+      <template v-if="isLoading">
+        <LoadingScreen />
+      </template>
+      <router-view v-else />
     </v-app>
   </div>
 </template>
@@ -16,8 +19,15 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+import LoadingScreen from '@/pages/LoadingScreen.vue';
+
 export default {
-  created() {
+  computed: {
+    ...mapGetters(['isLoading']),
+  },
+  components: {
+    LoadingScreen,
   },
 };
 </script>
