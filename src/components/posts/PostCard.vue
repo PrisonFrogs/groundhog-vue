@@ -16,8 +16,8 @@
       <v-icon>mdi-account</v-icon>
       {{ post.author_nickname }}
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-heart-outline</v-icon>
+      <v-btn @click="switchLike" icon>
+        <v-icon :color="color">mdi-heart{{ outlinedElementName }}</v-icon>
         1
       </v-btn>
     </v-card-actions>
@@ -31,6 +31,32 @@ export default {
     post: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      liked: false,
+    };
+  },
+  computed: {
+    outlinedElementName() {
+      return this.liked ? '' : '-outline';
+    },
+    color() {
+      return this.liked ? 'accent' : '';
+    },
+  },
+  methods: {
+    onClick() {
+      this.$router.push({
+        name: 'post',
+        params: {
+          id: this.post.id,
+        },
+      });
+    },
+    switchLike() {
+      this.liked = !this.liked;
     },
   },
 };
