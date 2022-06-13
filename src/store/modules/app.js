@@ -1,47 +1,78 @@
-import { login } from '@/api/auth';
+import {
+  login,
+} from '@/api/auth';
 import jwtDecode from 'jwt-decode';
+import Vue from 'vue';
 
-const getDefaultState = () => ({
+const defaultState = {
   authToken: null,
   user: null,
   expAt: null,
-});
-
-const state = getDefaultState();
+  refreshToken: null,
+  toast: {
+    message: '',
+    type: 'bottom',
+    duration: 3000,
+    wordWrap: true,
+    width: '150px',
+  },
+};
 
 const mutations = {
-  SET_USER: (_, user) => {
-    state.query = user;
+  SET_USER: (state, user) => {
+    state.user = user;
   },
-  SET_AUTH_TOKEN: (_, token) => {
+  SET_AUTH_TOKEN: (state, token) => {
     state.authToken = token;
   },
-  SET_EXP_AT: (_, expAt) => {
+  SET_EXP_AT: (state, expAt) => {
     state.expAt = expAt;
+  },
+  SET_TOAST: (state, toast) => {
+    state.toast = Object.assign(defaultState.toast, toast);
+
+    Vue.prototype.$toast[state.toast.type](state.toast.message);
   },
 };
 
 const actions = {
-  async login({ commit }) {
-    const response = await login(commit.login);
+  async login({
+    commit,
+  }, payload) {
+    const response = await login(payload);
 
-    const accessToken = response.payload.access_token;
-    const expAt = response.payload.exp_at;
+    const accessToken = response.access_token;
+    const expAt = response.exp_at;
     const user = jwtDecode(accessToken);
 
     commit('SET_AUTH_TOKEN', accessToken);
     commit('SET_EXP_AT', expAt);
     commit('SET_USER', user);
   },
+  showSucessToast({
+    commit,
+  }, message) {
+    commit('SET_TOAST', {
+      message,
+    });
+  },
+  showErrorToast({
+    commit,
+  }, message) {
+    commit('SET_TOAST', {
+      message,
+    });
+  },
 };
 
 const getters = {
-  user: (st) => st.user,
+  currentUser: (state) => state.user,
+  loginState: (state) => !!state.user,
 };
 
 export default {
   namespaced: false,
-  state,
+  defaultState,
   mutations,
   actions,
   getters,

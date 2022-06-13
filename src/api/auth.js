@@ -1,5 +1,9 @@
-import request from './request';
+import service from './request';
 
-export const login = (data) => request.post('/auth/login', data);
+export const login = (data) => service.request({
+  method: 'post',
+  url: '/auth/login',
+  data,
+});
 
-export const shake = () => request.get('/auth/shake');
+export const shake = () => service.get('/auth/shake');
