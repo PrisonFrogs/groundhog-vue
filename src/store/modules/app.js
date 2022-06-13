@@ -1,6 +1,6 @@
 import {
   login,
-} from '@/api/auth';
+} from '@/api/auth.api';
 import jwtDecode from 'jwt-decode';
 import Vue from 'vue';
 
@@ -68,6 +68,7 @@ const actions = {
 const getters = {
   currentUser: (state) => state.user,
   loginState: (state) => !!state.user,
+  authToken: (state) => state.authToken,
 };
 
 export default {

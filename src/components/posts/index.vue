@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { getPosts } from '@/api/posts';
+import { getPosts } from '@/api/posts.api';
 import AppBar from '@/components/layouts/AppBar.vue';
 import PostCard from './PostCard.vue';
 

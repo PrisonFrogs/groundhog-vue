@@ -8,9 +8,13 @@ import './plugins/toast';
 
 Vue.config.productionTip = false;
 
-new Vue({
+const vue = new Vue({
   router,
   vuetify,
   store,
   render: (h) => h(App),
 }).$mount('#app');
+
+Vue.prototype.$store = store;
+
+export default vue;

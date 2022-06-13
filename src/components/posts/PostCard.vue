@@ -18,13 +18,15 @@
       <v-spacer></v-spacer>
       <v-btn @click="switchLike" icon>
         <v-icon :color="color">mdi-heart{{ outlinedElementName }}</v-icon>
-        1
+        {{ currentLikesCount }}
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { likePost } from '@/api/posts.api';
+
 export default {
   name: 'PostCard',
   props: {
@@ -36,6 +38,7 @@ export default {
   data() {
     return {
       liked: false,
+      currentLikesCount: 0,
     };
   },
   computed: {
@@ -46,6 +49,10 @@ export default {
       return this.liked ? 'accent' : '';
     },
   },
+  created() {
+    this.currentLikesCount = this.post.likes_count;
+    this.liked = this.post.liked_by_current_user;
+  },
   methods: {
     onClick() {
       this.$router.push({
@@ -55,8 +62,11 @@ export default {
         },
       });
     },
-    switchLike() {
-      this.liked = !this.liked;
+    async switchLike() {
+      const { result } = await likePost(this.post.id);
+
+      this.currentLikesCount = result ? this.currentLikesCount += 1 : this.currentLikesCount -= 1;
+      this.liked = result;
     },
   },
 };
