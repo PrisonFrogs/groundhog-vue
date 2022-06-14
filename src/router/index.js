@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import HomeView from '@/pages/HomeView.vue';
+
+import PostsRoute from './posts.route';
 
 Vue.use(VueRouter);
 
@@ -15,6 +18,7 @@ const routes = [
     name: 'login',
     component: () => import('@/pages/login/index.vue'),
   },
+  ...PostsRoute,
 ];
 
 const router = new VueRouter({

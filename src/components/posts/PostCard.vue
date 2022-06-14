@@ -2,13 +2,14 @@
   <v-card>
     <v-img
       src="https://cdn.vuetifyjs.com/images/cards/plane.jpg"
+      @click="goToPost"
       class="white--text align-end"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       height="200px"
     >
     </v-img>
 
-    <v-card-actions class="pb-0">
+    <v-card-actions @click="goToPost" class="pb-0">
       {{ post.title }}
     </v-card-actions>
 
@@ -65,8 +66,18 @@ export default {
     async switchLike() {
       const { result } = await likePost(this.post.id);
 
-      this.currentLikesCount = result ? this.currentLikesCount += 1 : this.currentLikesCount -= 1;
+      this.currentLikesCount = result
+        ? (this.currentLikesCount += 1)
+        : (this.currentLikesCount -= 1);
       this.liked = result;
+    },
+    goToPost() {
+      this.$router.push({
+        name: 'post',
+        params: {
+          id: this.post.id,
+        },
+      });
     },
   },
 };

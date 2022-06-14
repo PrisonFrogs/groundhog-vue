@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue';
+import router from '@/router';
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -21,6 +22,16 @@ service.interceptors.request.use(
   },
 );
 
+const errorStatusHandler = (error) => {
+  switch (error.response.data.meta.status) {
+    case 403:
+      router.push('/login');
+      break;
+    default:
+      Vue.prototype.$store.dispatch('showErrorToast', error.response.data.meta.msg);
+  }
+};
+
 // response interceptor
 service.interceptors.response.use(
   /**
@@ -37,7 +48,9 @@ service.interceptors.response.use(
 
   (error) => {
     console.error(`err${error}`); // for debug
-    Vue.prototype.$store.dispatch('showErrorToast', error.response.data.meta.msg);
+
+    errorStatusHandler(error);
+
     return Promise.reject(error);
   },
 );
