@@ -1,10 +1,8 @@
 <template>
   <v-toolbar tile color="grey lighten-5" flat>
     <v-toolbar-title>
-      <v-btn icon @click="goBack"><b class="font-weight-bold">&lt;</b></v-btn>
-      <v-avatar color="primary" size="32">
-        <span class="white--text">{{ authorNickname.charAt(0) | capitalize }}</span>
-      </v-avatar>
+      <v-btn icon @click="goBack"><b class="back-btn">&lt;</b></v-btn>
+      <CharacterAvatar :author-nickname="authorNickname" />
       {{ authorNickname }}
     </v-toolbar-title>
 
@@ -15,8 +13,13 @@
 </template>
 
 <script>
+import CharacterAvatar from '@/components/CharacterAvatar.vue';
+
 export default {
   name: 'PostTitlebar',
+  components: {
+    CharacterAvatar,
+  },
   props: {
     authorNickname: {
       type: String,
@@ -30,3 +33,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.back-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+</style>

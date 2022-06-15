@@ -2,11 +2,9 @@
   <div id="app">
     <v-app>
       <LoadingScreen v-if="isLoading" />
-      <router-view v-slot="{ Component }">
-        <transition name="scale-slide">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+      <transition :name="$route.meta.transition" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </v-app>
   </div>
 </template>
@@ -18,26 +16,15 @@
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-.scale-slide-enter-active,
-.scale-slide-leave-active {
-  position: absolute;
-  transition: all 0.85s ease;
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.5s ease;
 }
 
-.scale-slide-enter-from {
-  left: -100%;
-}
-
-.scale-slide-enter-to {
-  left: 0%;
-}
-
-.scale-slide-leave-from {
-  transform: scale(1);
-}
-
-.scale-slide-leave-to {
-  transform: scale(0.8);
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
 }
 </style>
 

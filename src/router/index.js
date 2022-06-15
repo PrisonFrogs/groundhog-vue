@@ -12,11 +12,19 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
+    meta: {
+      transition: 'scale',
+    },
   },
   {
     path: '/login',
     name: 'login',
     component: () => import('@/pages/login/index.vue'),
+  },
+  {
+    path: '/loading',
+    name: 'loading',
+    component: () => import('@/pages/LoadingScreen.vue'),
   },
   ...PostsRoute,
 ];
