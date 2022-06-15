@@ -6,17 +6,14 @@
   >
     <v-btn>
       <span>Recents</span>
-
     </v-btn>
 
     <v-btn>
       <span>Favorites</span>
-
     </v-btn>
 
     <v-btn>
       <span>Nearby</span>
-
     </v-btn>
   </v-bottom-navigation>
 </template>
