@@ -1,22 +1,25 @@
 <template>
   <v-bottom-navigation
     :value="value"
-    color="primary"
     class="bottom-bar"
   >
-    <v-btn>
-      <span>Recents</span>
-    </v-btn>
+    <div v-for="item in allListItems" :key="item.id">
+      <v-btn>
+        <span>{{ item.title }}</span>
+      </v-btn>
+    </div>
 
-    <v-btn>
-      <span>Favorites</span>
-    </v-btn>
-
-    <v-btn>
-      <span>Nearby</span>
-    </v-btn>
   </v-bottom-navigation>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  data: () => ({ value: 1 }),
+  computed: mapGetters(['allListItems']),
+};
+</script>
 
 <style scoped>
 .bottom-bar{
