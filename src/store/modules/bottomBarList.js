@@ -1,27 +1,41 @@
 const state = {
-  items: [
+  pages: [
     {
       id: 1,
-      title: 'Recent',
+      title: '首页',
     },
     {
       id: 2,
-      title: 'Favorites',
+      title: '购物',
     },
     {
       id: 3,
-      title: 'Nearby',
+      title: '消息',
+    },
+    {
+      id: 4,
+      title: '我',
     },
   ],
+  current_page: '首页',
 };
 
 const getters = {
-  allListItems: () => state.items,
+  allListPages: () => state.pages,
+  getCurrentPage: () => state.current_page,
 };
 
-const actions = {};
+const actions = {
+  clickPage({ commit }, page) {
+    commit('newCurrentPage', page);
+  },
+};
 
-const mutations = {};
+const mutations = {
+  newCurrentPage(page) {
+    state.current_page = page;
+  },
+};
 
 export default {
   state,
