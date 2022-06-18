@@ -3,8 +3,8 @@
     v-model="getCurrentPage"
     class="bottom-bar"
   >
-    <div v-for="page in allListPages" :key="page.id" value="page.title">
-      <v-btn @click="redirectPage(page.title)">
+    <div v-for="page in allListPages" :key="page.id" value="page.id">
+      <v-btn>
         <span>{{ page.title }}</span>
       </v-btn>
     </div>
@@ -18,8 +18,8 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   methods: {
     ...mapActions(['clickPage']),
-    redirectPage(title) {
-      this.clickPage(title);
+    redirectPage(id) {
+      this.clickPage(id);
     },
   },
   computed: mapGetters(['allListPages', 'getCurrentPage']),

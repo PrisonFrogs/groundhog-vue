@@ -1,23 +1,23 @@
 const state = {
   pages: [
     {
-      id: 1,
+      id: 0,
       title: '首页',
     },
     {
-      id: 2,
+      id: 1,
       title: '购物',
     },
     {
-      id: 3,
+      id: 2,
       title: '消息',
     },
     {
-      id: 4,
+      id: 3,
       title: '我',
     },
   ],
-  current_page: '首页',
+  current_page: 0,
 };
 
 const getters = {
@@ -26,14 +26,14 @@ const getters = {
 };
 
 const actions = {
-  clickPage({ commit }, page) {
-    commit('newCurrentPage', page);
+  clickPage({ commit }, id) {
+    commit('newCurrentPage', id);
   },
 };
 
 const mutations = {
-  newCurrentPage(page) {
-    state.current_page = page;
+  newCurrentPage(id) {
+    state.current_page = id;
   },
 };
 
