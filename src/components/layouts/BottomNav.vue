@@ -1,14 +1,10 @@
 <template>
-  <v-bottom-navigation
-    v-model="getCurrentPage"
-    class="bottom-bar"
-  >
+  <v-bottom-navigation class="bottom-bar" v-model="currentPage">
     <div v-for="page in allListPages" :key="page.id" value="page.id">
       <v-btn>
         <span>{{ page.title }}</span>
       </v-btn>
     </div>
-
   </v-bottom-navigation>
 </template>
 
@@ -22,7 +18,17 @@ export default {
       this.clickPage(id);
     },
   },
-  computed: mapGetters(['allListPages', 'getCurrentPage']),
+  computed: {
+    ...mapGetters(['allListPages', 'getCurrentPage']),
+    currentPage: {
+      get() {
+        return this.getCurrentPage;
+      },
+      set(id) {
+        this.clickPage(id);
+      },
+    },
+  },
 };
 </script>
 

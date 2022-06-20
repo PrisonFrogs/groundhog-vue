@@ -1,4 +1,4 @@
-const state = {
+const defaultState = {
   pages: [
     {
       id: 0,
@@ -21,8 +21,8 @@ const state = {
 };
 
 const getters = {
-  allListPages: () => state.pages,
-  getCurrentPage: () => state.current_page,
+  allListPages: (state) => state.pages,
+  getCurrentPage: (state) => state.current_page,
 };
 
 const actions = {
@@ -32,13 +32,14 @@ const actions = {
 };
 
 const mutations = {
-  newCurrentPage(id) {
+  newCurrentPage(state, id) {
     state.current_page = id;
+    console.log(state.current_page);
   },
 };
 
 export default {
-  state,
+  state: defaultState,
   getters,
   actions,
   mutations,
