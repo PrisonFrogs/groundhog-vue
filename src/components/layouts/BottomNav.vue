@@ -36,5 +36,7 @@ export default {
 .bottom-bar {
   position: fixed;
   bottom: 0;
+  height: 30px !important;
+  line-height: 2;
 }
 </style>
