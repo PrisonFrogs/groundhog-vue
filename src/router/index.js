@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import HomeView from '@/pages/HomeView.vue';
 
 import PostsRoute from './posts.route';
+import MyProfile from './profile.route';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,7 @@ const routes = [
     component: () => import('@/pages/LoadingScreen.vue'),
   },
   ...PostsRoute,
+  ...MyProfile,
 ];
 
 const router = new VueRouter({
