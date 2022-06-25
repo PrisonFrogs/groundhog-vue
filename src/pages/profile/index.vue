@@ -84,74 +84,38 @@ export default {
   overflow: hidden;
 }
 
-/* web */
-@media screen and (min-width: 480px) {
-  .user-info {
-    margin-top: 1%;
-    padding: 15px 15px 5px 20px;
-    font-size: 10px;
-    line-height: 0.3em;
-    border: none !important;
-  }
-
-  .user-info-2 {
-    margin: -2% 0 0 10%;
-  }
-
-  .chips {
-    margin: 5px 5px 0 -15px;
-  }
-
-  .user-intro {
-    margin-left: -12px;
-  }
-
-  .follow-others {
-    flex: 1;
-  }
-
-  .fans {
-    flex: 1;
-  }
-
-  .got-likes-collect {
-    flex: 1;
-  }
+.user-info {
+  margin-top: 15px;
+  min-width: 100px !important;
+  padding: 15px 15px 5px 20px;
+  font-size: 10px;
+  line-height: 0.3em;
+  border: none !important;
 }
 
-/* mobile */
-@media screen and (max-width: 480px) {
-  .user-info {
-    min-width: 100px !important;
-    margin-top: 4%;
-    padding: 15px 15px 5px 20px;
-    font-size: 10px;
-    border: none !important;
-  }
+.chips {
+  margin: 5px 5px 0 -2px;
+}
 
-  .user-info-2 {
-    margin: -20px 0 -5px 45px;
-  }
+.user-intro {
+  margin-left: 0;
+}
 
-  .chips {
-    margin: 5px 5px 0 -2px;
-  }
+.follow-others {
+  flex: 1;
+}
 
-  .user-intro {
-    margin-left: 0;
-  }
+.fans {
+  flex: 1;
+}
 
-  .follow-others {
-    flex: 1;
-  }
+.got-likes-collect {
+  flex: 2;
+}
 
-  .fans {
-    flex: 1;
-  }
-
-  .got-likes-collect {
-    flex: 2;
-  }
+.user-info-2 {
+  min-width: 120px;
+  margin: -20px 0 -5px 45px;
 }
 
 .avatar {
@@ -176,7 +140,8 @@ export default {
 }
 
 .user-info-3 {
-  width: 45%;
+  width: 216px;
+  min-width: 216px;
   height: 80px;
   padding: 20px 0 0 35px;
   font-size: 11px;
