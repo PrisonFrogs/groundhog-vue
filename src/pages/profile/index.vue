@@ -28,19 +28,13 @@
         <v-chip x-small class='chip'>+occupation</v-chip>
       </div>
     </div>
+
     <div class='user-info-3'>
-      <div class='follow-others'>
-        <div>3</div>
-        <div>关注</div>
+      <div v-for='num in nums' :key='num[1]' :class='num[1]'>
+        <div>{{ num[0] }}</div>
+        <div>{{ num[1] }}</div>
       </div>
-      <div class='fans'>
-        <div>3</div>
-        <div>粉丝</div>
-      </div>
-      <div class='got-likes-collect'>
-        <div>3</div>
-        <div>获赞与收藏</div>
-      </div>
+
     </div>
     <ProfileTabs />
     <BottomNav />
@@ -63,6 +57,11 @@ export default {
       name: '汤姆',
       id: '小红书id:',
       ip: 'IP:',
+    },
+    nums: {
+      followOthers: [3, '关注'],
+      fans: [3, '粉丝'],
+      gotLikesCollects: [3, '获赞与收藏'],
     },
   }),
   components: {

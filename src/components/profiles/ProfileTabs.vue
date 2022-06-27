@@ -5,17 +5,17 @@
           <v-tabs v-model='tab' centered>
             <v-tabs-slider color='red'></v-tabs-slider>
 
-            <v-tab v-for='item in items' :key='item'>
-              {{ item }}
+            <v-tab v-for='item in items' :key='item.tab'>
+              {{ item.tab }}
             </v-tab>
           </v-tabs>
         </template>
       </v-toolbar>
 
       <v-tabs-items v-model='tab'>
-        <v-tab-item v-for='item in items' :key='item'>
+        <v-tab-item v-for='item in items' :key='item.tab'>
           <v-card flat>
-            <v-card-text v-text='text'></v-card-text>
+              <component v-bind:is="item.content"/>
           </v-card>
         </v-tab-item>
       </v-tabs-items>
@@ -23,15 +23,25 @@
 </template>
 
 <script>
+import TabNote from '@/components/profiles/TabNote.vue';
+import TabCollect from '@/components/profiles/TabCollect.vue';
+import TabLiked from '@/components/profiles/TabLiked.vue';
+
 export default {
   name: 'ProfileTabs',
+  components: {
+    TabNote,
+    TabCollect,
+    TabLiked,
+  },
   data() {
     return {
-      tab: null,
+      tab: 0,
       items: [
-        '笔记', '收藏', '赞过',
+        { tab: '笔记', content: TabNote },
+        { tab: '收藏', content: TabCollect },
+        { tab: '赞过', content: TabLiked },
       ],
-      text: '',
     };
   },
 };
