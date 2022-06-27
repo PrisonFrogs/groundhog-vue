@@ -142,7 +142,7 @@ export default {
   width: 216px;
   min-width: 216px;
   height: 80px;
-  padding: 20px 0 0 35px;
+  padding: 20px 0 0 45px;
   font-size: 11px;
   text-align: center;
   display: flex;
